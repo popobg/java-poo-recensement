@@ -3,6 +3,7 @@ package fr.diginamic.recensement.services;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import fr.diginamic.recensement.entites.Recensement;
@@ -26,6 +27,9 @@ public class RecherchePopulationBorneService extends MenuService {
 
 		System.out.println("Quel est le code du département recherché ? ");
 		String choix = scanner.nextLine();
+		if (StringUtils.isEmpty(choix)) {
+			throw new IllegalInputException("Le code du département doit être renseigné.");
+		}
 
 		System.out.println("Choississez une population minimum (en milliers d'habitants): ");
 		String saisieMin = scanner.nextLine();

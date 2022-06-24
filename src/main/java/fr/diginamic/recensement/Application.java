@@ -51,48 +51,52 @@ public class Application {
 			// Conversion du choix utilisateur en int
 			choix = Integer.parseInt(choixMenu);
 
-			// On exécute l'option correspondant au choix de l'utilisateur
-			switch (choix) {
-			case 1:
-				RecherchePopulationVilleService rechercheVille = new RecherchePopulationVilleService();
-				rechercheVille.traiter(recensement, scanner);
-				break;
-			case 2:
-				RecherchePopulationDepartementService rechercheDept = new RecherchePopulationDepartementService();
-				rechercheDept.traiter(recensement, scanner);
-				break;
-			case 3:
-				RecherchePopulationRegionService rechercheRegion = new RecherchePopulationRegionService();
-				rechercheRegion.traiter(recensement, scanner);
-				break;
-			case 4:
-				RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
-				try {
+			// Les choix de l'utilisateur sont susceptibles de jeter une exception
+			// On met donc en place un bloc try / catch pour traiter ces exceptions
+			// et prévenir l'utilisateur des mauvaises saisies qu'il a effectuées.
+			try {
+				
+				// On exécute l'option correspondant au choix de l'utilisateur
+				switch (choix) {
+				case 1:
+					RecherchePopulationVilleService rechercheVille = new RecherchePopulationVilleService();
+					rechercheVille.traiter(recensement, scanner);
+					break;
+				case 2:
+					RecherchePopulationDepartementService rechercheDept = new RecherchePopulationDepartementService();
+					rechercheDept.traiter(recensement, scanner);
+					break;
+				case 3:
+					RecherchePopulationRegionService rechercheRegion = new RecherchePopulationRegionService();
+					rechercheRegion.traiter(recensement, scanner);
+					break;
+				case 4:
+					RecherchePopulationBorneService recherchePopBorne = new RecherchePopulationBorneService();
 					recherchePopBorne.traiter(recensement, scanner);
-				} catch (FunctionalException e) {
-					System.err.println(e.getMessage());
+					break;
+				case 5:
+					RechercheVillesPlusPeupleesDepartement rechercheVillesPlusPeupleesDepartement = new RechercheVillesPlusPeupleesDepartement();
+					rechercheVillesPlusPeupleesDepartement.traiter(recensement, scanner);
+					break;
+				case 6:
+					RechercheVillesPlusPeupleesRegion rechercheVillesPlusPeupleesRegion = new RechercheVillesPlusPeupleesRegion();
+					rechercheVillesPlusPeupleesRegion.traiter(recensement, scanner);
+					break;
+				case 7:
+					RechercheDepartementsPlusPeuplees rechercherDepartementsPlusPeuplees = new RechercheDepartementsPlusPeuplees();
+					rechercherDepartementsPlusPeuplees.traiter(recensement, scanner);
+					break;
+				case 8:
+					RechercheRegionsPlusPeuplees rechercheRegionsPlusPeuplees = new RechercheRegionsPlusPeuplees();
+					rechercheRegionsPlusPeuplees.traiter(recensement, scanner);
+					break;
+				case 9:
+					RechercheVillesPlusPeupleesFrance rechercheVillesPlusPeupleesFrance = new RechercheVillesPlusPeupleesFrance();
+					rechercheVillesPlusPeupleesFrance.traiter(recensement, scanner);
+					break;
 				}
-				break;
-			case 5:
-				RechercheVillesPlusPeupleesDepartement rechercheVillesPlusPeupleesDepartement = new RechercheVillesPlusPeupleesDepartement();
-				rechercheVillesPlusPeupleesDepartement.traiter(recensement, scanner);
-				break;
-			case 6:
-				RechercheVillesPlusPeupleesRegion rechercheVillesPlusPeupleesRegion = new RechercheVillesPlusPeupleesRegion();
-				rechercheVillesPlusPeupleesRegion.traiter(recensement, scanner);
-				break;
-			case 7:
-				RechercheDepartementsPlusPeuplees rechercherDepartementsPlusPeuplees = new RechercheDepartementsPlusPeuplees();
-				rechercherDepartementsPlusPeuplees.traiter(recensement, scanner);
-				break;
-			case 8:
-				RechercheRegionsPlusPeuplees rechercheRegionsPlusPeuplees = new RechercheRegionsPlusPeuplees();
-				rechercheRegionsPlusPeuplees.traiter(recensement, scanner);
-				break;
-			case 9:
-				RechercheVillesPlusPeupleesFrance rechercheVillesPlusPeupleesFrance = new RechercheVillesPlusPeupleesFrance();
-				rechercheVillesPlusPeupleesFrance.traiter(recensement, scanner);
-				break;
+			} catch (FunctionalException e) {
+				System.err.println(e.getMessage());
 			}
 
 		} while (choix != 99);
@@ -116,5 +120,6 @@ public class Application {
 		System.out.println("8. Rechercher les N plus grandes régions de France.");
 		System.out.println("9. Rechercher les N plus grandes villes de France.");
 		System.out.println("99. Sortir");
+		System.out.print("Effectuez votre choix:");
 	}
 }
