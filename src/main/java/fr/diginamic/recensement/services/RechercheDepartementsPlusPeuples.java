@@ -18,14 +18,21 @@ import fr.diginamic.recensement.services.comparators.EnsemblePopComparateur;
  * @author DIGINAMIC
  *
  */
-public class RechercheDepartementsPlusPeuplees extends MenuService {
+public class RechercheDepartementsPlusPeuples extends MenuService {
 
 	@Override
 	public void traiter(Recensement recensement, Scanner scanner) {
 
 		System.out.println("Veuillez saisir un nombre de départements:");
 		String nbDeptsStr = scanner.nextLine();
-		int nbDepts = Integer.parseInt(nbDeptsStr);
+
+		int nbDepts;
+		try {
+			nbDepts = Integer.parseInt(nbDeptsStr);
+		}
+		catch (NumberFormatException e) {
+			throw new NumberFormatException("le nombre de départements saisi n'est pas un nombre entier.");
+		}
 
 		List<Ville> villes = recensement.getVilles();
 		Map<String, Departement> mapDepts = new HashMap<>();

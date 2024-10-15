@@ -3,6 +3,7 @@ package fr.diginamic.recensement.services;
 import java.util.Scanner;
 
 import fr.diginamic.recensement.entites.Recensement;
+import fr.diginamic.recensement.exceptions.InputException;
 
 /**
  * Classe représentant un service
@@ -16,8 +17,8 @@ public abstract class MenuService {
 	 * Méthode abstraite de traitement que doivent posséder toutes les méthodes de
 	 * services
 	 * 
-	 * @param lignes  lignes du fichier
+	 * @param recensement  lignes du fichier
 	 * @param scanner scanner
 	 */
-	public abstract void traiter(Recensement recensement, Scanner scanner);
+	public abstract void traiter (Recensement recensement, Scanner scanner) throws Exception;
 }
